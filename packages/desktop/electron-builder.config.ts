@@ -85,9 +85,17 @@ function getConfig() {
     case "dev": {
       return {
         ...base,
-        appId: "ai.opencode.desktop.dev",
-        productName: "OpenCode Dev",
-        rpm: { packageName: "opencode-dev" },
+        appId: "ai.multicode.desktop.dev",
+        artifactName: "multicode-desktop-${os}-${arch}.${ext}",
+        productName: "Multicode",
+        protocols: { name: "Multicode", schemes: ["multicode"] },
+        mac: {
+          ...base.mac,
+          notarize: false,
+          target: ["zip"],
+        },
+        dmg: { sign: false },
+        rpm: { packageName: "multicode-dev" },
       }
     }
     case "beta": {
